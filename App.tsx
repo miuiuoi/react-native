@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
   const [student, setStudent] = useState([
-    { id: 1, name: "Toan", age: 22 },
+    { id: 1, name: "Toan", age: 22, key: 1},
     { id: 2, name: "Toan1", age: 18 },
     { id: 3, name: "Toan2", age: 20 },
     { id: 4, name: "Toan3", age: 21 },
@@ -18,7 +18,19 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Hello World</Text>
-      <ScrollView>
+
+      <FlatList
+        data={student}
+        renderItem={(data) => {
+          return(
+            <View style={styles.item}>
+              <Text>{data.item.name}</Text>
+            </View>
+          )
+        }}
+      />
+
+      {/* <ScrollView>
         {student.map(item => {
           return (
             <View key={item.id} style={styles.item}>
@@ -26,8 +38,8 @@ export default function App() {
             </View>
           );
         })}
-      </ScrollView>
-      <StatusBar style="auto" />
+      </ScrollView> */}
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
